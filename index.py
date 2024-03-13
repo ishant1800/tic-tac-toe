@@ -26,6 +26,13 @@ def check_winner(board, player):
         return True
     return False
 
+def check_draw(board):
+    for row in board:
+        for cell in row:
+            if cell == " ":
+                return False
+    return True
+
 def play_game():
     board = start_board()
     display_board(board)
@@ -38,7 +45,7 @@ def play_game():
             if check_winner(board, player):
                 print(f"Player {player} wins!")
                 break
-            if all([cell != " " for row in board for cell in row]):
+            if check_draw(board):
                 print("It's a draw!")
                 break
             player = "O" if player == "X" else "X"
